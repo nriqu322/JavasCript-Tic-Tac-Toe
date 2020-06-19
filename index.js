@@ -27,9 +27,20 @@ const gameFlow = (() => {
 
     player1 = Player(pname1, 'X', score1);
     player2 = Player(pname2, 'O', score2);
-
     displayController.renderCell();
+    document.getElementById('form-container').remove();
+
+    return  false ;
   };
+
+  const makeMove = () => {
+    document.getElementById('cell-0').innerHTML = 'X' ;
+  };
+
+  document.getElementById('cell-0').addEventListener('click', makeMove);
+
+
+
 })();
 
 const gameBoard = (() => {
