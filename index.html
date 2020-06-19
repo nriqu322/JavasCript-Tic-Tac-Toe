@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/master.css">
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
@@ -11,6 +12,15 @@
   </header>
   <main class='container'>
     <section>
+      <form class="players-form">
+        <!-- <label for="player1"></label> -->
+        <input type="text" id="player1" name="player1" placeholder="Player 1 (X)" value="">
+        <!-- <label for="player2"></label> -->
+        <input type="text" id="player2" name="player2" placeholder="Player 2 (0)" value=""><br>
+        <input type="submit" class='btn btn-primary' id='input-submit' name="input-submit">
+      </form>
+    </section>
+    <section class='board-container'>
       <div class="board row" id='board'></div>
     </section>
   </main>
