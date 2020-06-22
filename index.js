@@ -1,26 +1,35 @@
 
 const displayController = (() => {
 
-  const brd = document.getElementById('board');
+  const board = document.getElementById('board');
+
   const renderCell = () => {
     for (let i = 0; i < 9; i += 1) {
       const cell = document.createElement('div');
       cell.classList.add('cell', 'col-4', 'border');
       cell.id = `cell-${i}`;
-      brd.appendChild(cell);
+      board.appendChild(cell);
     }
   };
 
-  const callBoard = () => {
-    for(let i = 0; i < 9 ; i++){
-      cell = document.getElementById(`cell-${i}`);
-      cell.addEventListener('click', () => {
-        cell.innerHTML = 'X';
-      });
-    }
+
+
+  const getCells = () => {
+    let cell = document.querySelectorAll('.cell');
+    return cell ;
   }
 
-  return { renderCell, callBoard };
+  const formSubmission = document.getElementById('players-form').onsubmit = () => {
+    renderCell();
+    document.getElementById('form-container').remove();
+    return  false ;
+  };
+
+  getCells().addEventListener('click', (() => {
+    console.log('yay');
+  }))
+
+  return { renderCell, getCells };
 
 })();
 
@@ -29,37 +38,12 @@ const Player = (name, symbol, score = 0) => {
 };
 
 const gameFlow = (() => {
-  let player1;
-  let player2;
-  let score1;
-  let score2;
 
-  document.getElementById('players-form').onsubmit = () => {
-    const pname1 = document.getElementById('player1').value;
-    const pname2 = document.getElementById('player2').value;
+  let player1 = Player('kaka', 'x');
+  let player2 = Player('koko', 'x');
 
-    player1 = Player(pname1, 'X', score1);
-    player2 = Player(pname2, 'O', score2);
-    displayController.renderCell();
-    displayController.callBoard();
-    document.getElementById('form-container').remove();
 
-    /*
-    for (let i = 0; i < 9 ; i++){
-      if(i % 2 == 0){
-        playerOnePlay();
-      }else{
-        playerTwoPlay();
-      }
-    }
-    */
 
-    return  false ;
-  };
-
-  const makeMove = (cell) => {
-    cell.innerHTML = 'X' ;
-  };
 })();
 
 const gameBoard = (() => {
