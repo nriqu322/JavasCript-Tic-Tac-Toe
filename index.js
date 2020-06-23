@@ -1,3 +1,5 @@
+
+
 const Player = (name, symbol, score = 0) => ({ name, symbol, score });
 
 const gameBoard = (() => {
@@ -11,10 +13,17 @@ const gameBoard = (() => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+
+  return { winCombos };
+})();
+
+const displayController = (() => {
+
   let message;
+  let check = false;
 
   const checkWins = (cell) => {
-    winCombos.forEach((combo) => {
+    gameBoard.winCombos.forEach((combo) => {
       const elem1 = combo[0];
       const elem2 = combo[1];
       const elem3 = combo[2];
@@ -26,6 +35,7 @@ const gameBoard = (() => {
       ) {
         message = document.getElementById('result-message');
         message.innerHTML = 'Winner';
+        check = true;
       }
     });
   };
@@ -37,10 +47,6 @@ const gameBoard = (() => {
     }
   };
 
-  return { checkWins, checkTie };
-})();
-
-const displayController = (() => {
   let countMarks = 0;
   const board = document.getElementById('board');
 
@@ -60,20 +66,23 @@ const displayController = (() => {
 
   const mark = (player1, player2) => {
     const cell = getCells();
+
     for (let i = 0; i < 9; i += 1) {
       // eslint-disable-next-line no-loop-func
-      cell[i].addEventListener('click', () => {
-        if (cell[i].innerHTML === '') {
-          if (countMarks % 2 === 0) {
-            cell[i].innerHTML = player1.symbol;
-          } else {
-            cell[i].innerHTML = player2.symbol;
-          }
-          countMarks += 1;
-        }
-        gameBoard.checkWins(cell);
-        gameBoard.checkTie(countMarks);
-      });
+        cell[i].addEventListener('click', () => {
+            if(! check){
+              if (cell[i].innerHTML === '') {
+                if (countMarks % 2 === 0) {
+                  cell[i].innerHTML = player1.symbol;
+                } else {
+                  cell[i].innerHTML = player2.symbol;
+                }
+                countMarks += 1;
+              }
+            }
+          checkWins(cell);
+          checkTie(countMarks);
+        });
     }
   };
 
@@ -96,8 +105,7 @@ const displayController = (() => {
 })();
 
 const gameFlow = (() => {
-  let player1 = Player('kaka', 'x');
-  let player2 = Player('koko', 'o');
+
 
   // displayController.mark(player1, player2);
   // displayController.renderCell();
