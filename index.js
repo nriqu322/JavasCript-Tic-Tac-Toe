@@ -1,6 +1,4 @@
-const Player = (name, symbol, score = 0) => {
-  return { name, symbol, score };
-};
+const Player = (name, symbol, score = 0) => ({ name, symbol, score });
 
 const gameBoard = (() => {
   const winCombos = [
