@@ -9,3 +9,11 @@ body {
 .cell {
   height: 100px;
 }
+
+.display-players {
+  max-width: 500px;
+}
+.dis-player1,
+.dis-player2 {
+  display: none;
+}

@@ -8,30 +8,26 @@
   </head>
   <body>
   <header>
-    <h1>Tic-Tac-Toe</h1>
+    <h1 class="text-center">Tic-Tac-Toe</h1>
   </header>
   <main class='container'>
     <section id='form-container'>
-      <form class="form" id='players-form' onsubmit="createPlayer">
+      <form class="form text-center" id='players-form' onsubmit="createPlayer">
         <!-- <label for="player1"></label> -->
         <input type="text" id="player1" name="player1" placeholder="Player 1 (X)" value="">
         <!-- <label for="player2"></label> -->
         <input type="text" id="player2" name="player2" placeholder="Player 2 (0)" value=""><br>
         <input type="submit" class='btn btn-primary' id='input-submit' name="input-submit">
       </form>
-      <!-- <div class="display-players">
-        <div class='dis-player1'>
-          <div class="p1name"></div>
-          <div class="score1"></div>
+      <div class="display-players mx-auto d-flex flex-row justify-content-between">
+        <div class='dis-player1 d-flex flex-column'>
         </div>
-        <div class='dis-player2'>
-          <div class="p2name"></div>
-          <div class="score2"></div>
-        </div> -->
+        <div class='dis-player2 d-flex flex-column'>
+        </div>
       </div>
     </section>
     </section>
-    <section class="board-container">
+    <section class="board-container mx-auto">
       <div class="board row" id="board"></div>
       <div class="message" id="result-message"></div>
     </section>
