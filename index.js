@@ -12,41 +12,6 @@ const gameBoard = (() => {
     [2, 4, 6],
   ];
 
-  return { winCombos };
-})();
-
-const displayController = (() => {
-  let message;
-  let check = false;
-
-  const checkWins = (cell) => {
-    gameBoard.winCombos.forEach((combo) => {
-      const elem1 = combo[0];
-      const elem2 = combo[1];
-      const elem3 = combo[2];
-
-      if (
-        cell[elem1].innerHTML
-        && cell[elem1].innerHTML === cell[elem2].innerHTML
-        && cell[elem1].innerHTML === cell[elem3].innerHTML
-      ) {
-        message = document.getElementById('result-message');
-        message.innerHTML = 'Winner';
-        check = true;
-      }
-    });
-  };
-
-  const checkTie = (countMarks) => {
-    if (countMarks === 9) {
-      message = document.getElementById('result-message');
-      message.innerHTML = 'It\'s a Tie';
-    }
-  };
-
-  let countMarks = 0;
-  const board = document.getElementById('board');
-
   const renderCell = () => {
     for (let i = 0; i < 9; i += 1) {
       const cell = document.createElement('div');
@@ -59,28 +24,6 @@ const displayController = (() => {
   const getCells = () => {
     const cell = document.querySelectorAll('.cell');
     return cell;
-  };
-
-  const mark = (player1, player2) => {
-    const cell = getCells();
-
-    for (let i = 0; i < 9; i += 1) {
-      // eslint-disable-next-line no-loop-func
-      cell[i].addEventListener('click', () => {
-        if (!check) {
-          if (cell[i].innerHTML === '') {
-            if (countMarks % 2 === 0) {
-              cell[i].innerHTML = player1.symbol;
-            } else {
-              cell[i].innerHTML = player2.symbol;
-            }
-            countMarks += 1;
-          }
-        }
-        checkWins(cell);
-        checkTie(countMarks);
-      });
-    }
   };
 
   const displayPlayers = (player1, player2) => {
@@ -122,28 +65,88 @@ const displayController = (() => {
     p2.style.display = 'block';
   };
 
-  document.getElementById('players-form').onsubmit = () => {
-    const pname1 = document.getElementById('player1').value;
-    const pname2 = document.getElementById('player2').value;
+  return { winCombos, renderCell, getCells, displayPlayers };
+})();
 
-    const player1 = Player(pname1, 'X');
-    const player2 = Player(pname2, 'O');
-    displayPlayers(player1, player2);
-    renderCell();
-    mark(player1, player2);
-    document.getElementById('players-form').remove();
-    // document.getElementById
-    return false;
+const displayController = (() => {
+  let message;
+
+  const checkWins = (cell) => {
+    gameBoard.winCombos.forEach((combo) => {
+      const elem1 = combo[0];
+      const elem2 = combo[1];
+      const elem3 = combo[2];
+
+      if (
+        cell[elem1].innerHTML
+        && cell[elem1].innerHTML === cell[elem2].innerHTML
+        && cell[elem1].innerHTML === cell[elem3].innerHTML
+      ) {
+        message = document.getElementById('result-message');
+        message.innerHTML = 'Winner';
+        check = true;
+      }
+    });
   };
 
+  const checkTie = (countMarks) => {
+    if (countMarks === 9) {
+      message = document.getElementById('result-message');
+      message.innerHTML = 'It\'s a Tie';
+    }
+  };
+
+  const board = document.getElementById('board');
+
+  const submitBtn = () => {
+        const pname1 = document.getElementById('player1');
+        const pname2 = document.getElementById('player2');
+        const player1 = Player(pname1, 'X');
+        const player2 = Player(pname2, 'O');
+        gameBoard.displayPlayers(player1, player2);
+        gameBoard.renderCell();
+
+        // playerMove(player1, player2);
+        document.getElementById('players-form').remove();
+        // document.getElementById
+        return { pname1, pname2 } ;
+      };
+
+    document.getElementById('players-form').onsubmit = () => {
+      submitBtn();
+      return false;
+    }
   return {
-    renderCell, getCells, mark, countMarks,
+    checkWins, checkTie
   };
 })();
 
 const gameFlow = (() => {
 
+  let countMarks = 0;
+  let check = false;
 
-  // displayController.mark(player1, player2);
+  const playerMove = (player1, player2) => {
+    const cell = gameBoard.getCells();
+
+    for (let i = 0; i < 9; i += 1) {
+      // eslint-disable-next-line no-loop-func
+      cell[i].addEventListener('click', () => {
+        if (!check) {
+          if (cell[i].innerHTML === '') {
+            if (countMarks % 2 === 0) {
+              cell[i].innerHTML = player1.symbol;
+            } else {
+              cell[i].innerHTML = player2.symbol;
+            }
+            countMarks += 1;
+          }
+        }
+        displayController.checkWins(cell);
+        displayController.checkTie(countMarks);
+      });
+    }
+  };
+  // displayController.playerMove(player1, player2);
   // displayController.renderCell();
 })();
