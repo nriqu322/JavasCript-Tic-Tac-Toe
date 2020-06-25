@@ -103,7 +103,15 @@ const displayController = (() => {
         newButton = document.querySelector('.new-game');
         newButton.textContent = 'New Game';
 
-        check = true;
+        document.getElementById('new-game').addEventListener('click', () => {
+          const cell = gameBoard.getCells();
+          for (let i = 0; i < 9 ; i++){
+            console.log('yay')
+            cell[i].innerHTML = '';
+            cell[i].classList.remove('win');
+          }
+          document.querySelector('.message').style.display = 'none';
+        });
       }
     });
   };
@@ -114,6 +122,12 @@ const displayController = (() => {
       message.innerHTML = 'It\'s a Tie';
     }
   };
+
+
+
+  const newGame = () => {
+
+  }
 
   const getPlayersData = () => {
     const pname1 = document.getElementById('player1').value;
@@ -159,7 +173,7 @@ const displayController = (() => {
   };
 
   return {
-    checkWins, checkTie, getPlayersData, submitBtn, playerMove,
+    checkWins, checkTie, getPlayersData, submitBtn, playerMove
   };
 })();
 
@@ -168,6 +182,9 @@ const gameFlow = (() => {
     displayController.submitBtn();
     return false;
   };
+
+
+
   // displayController.playerMove(player1, player2);
   // displayController.renderCell();
 })();
