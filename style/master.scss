@@ -1,0 +1,99 @@
+/*font-family: 'Press Start 2P', cursive;*/
+/**//**/
+
+/* Color Theme Swatches in Hex */
+$LEE-《DMT》Music-Video-1-hex: #3F3CA6;
+$LEE-《DMT》Music-Video-2-hex: #2C2973;
+$color-light: #716DF2;
+$color-accent-hover: #05C7F2;
+$LEE-《DMT》Music-Video-5-hex: #05F2F2;
+
+/* Color Theme Swatches in Hex */
+$StarTropics-1-hex: #414AF2;
+$StarTropics-2-hex: #484FD9;
+$StarTropics-3-hex: #8D92F2;
+$StarTropics-4-hex: #158C03;
+$StarTropics-5-hex: #0D0D0D;
+
+/* Color Theme Swatches in Hex */
+$Arcade-High-New-Impressions-1-hex: #BF268A;
+$Arcade-High-New-Impressions-2-hex: #D93BBE;
+$yellow: #F2C029;
+$Arcade-High-New-Impressions-4-hex: #F2913D;
+$Arcade-High-New-Impressions-5-hex: #F26E50;
+
+/* Color Theme Swatches in Hex */
+$color-secondary: #011640;
+$color-background: #011126;
+$color-accent: #05F2DB;
+$color-complementary: #F23005;
+$Creative-analogous: #730202;
+
+
+body {
+  font-size: 12px;
+  color: $color-accent;
+  font-family: 'Press Start 2P', cursive;
+  background-color: $color-background;
+}
+
+form {
+  input {
+    background-color: rgb(200,180,230);
+    color: $color-secondary;
+    border: solid $color-accent 2px;
+  }
+}
+
+span {
+  color: $yellow;
+}
+
+.button {
+  background-color: $color-accent ;
+  height: 40px;
+  &:hover{
+    background-color: $color-accent-hover;
+    transform: scale(1.1);
+  }
+}
+
+.board-container {
+  max-width: 300px;
+}
+
+.cell {
+  height: 100px;
+  &:hover{
+    background-color: $color-complementary ;
+    cursor: pointer;
+  }
+}
+
+.display-players {
+  max-width: 500px;
+}
+
+.dis-player1,
+.dis-player2 {
+  display: none;
+}
+
+.win {
+  background-color: rgb(15, 197, 15);
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}

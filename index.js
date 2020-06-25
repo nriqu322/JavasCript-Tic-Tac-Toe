@@ -16,7 +16,7 @@ const gameBoard = (() => {
   const renderCell = () => {
     for (let i = 0; i < 9; i += 1) {
       const cell = document.createElement('div');
-      cell.classList.add('cell', 'col-4', 'border');
+      cell.classList.add('cell', 'col-4');
       cell.id = `cell-${i}`;
       board.appendChild(cell);
     }
@@ -154,8 +154,6 @@ const displayController = (() => {
       document.querySelector('.message').style.display = 'none';
     });
   }
-
-
 
   const getPlayersData = () => {
     const pname1 = document.getElementById('player1').value;
