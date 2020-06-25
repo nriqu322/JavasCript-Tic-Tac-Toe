@@ -66,8 +66,19 @@ const gameBoard = (() => {
     p2.style.display = 'block';
   };
 
+
+  const updateScore = (currentPlayer, player1) => {
+    if (currentPlayer === player1) {
+      const pScore1 = document.querySelector('.p1score');
+      pScore1.textContent = currentPlayer.score;
+    } else {
+      const pScore2 = document.querySelector('.p2score');
+      pScore2.textContent = currentPlayer.score;
+    }
+  };
+
   return {
-    winCombos, renderCell, getCells, displayPlayers,
+    winCombos, renderCell, getCells, displayPlayers, updateScore,
   };
 })();
 
@@ -99,15 +110,15 @@ const displayController = (() => {
 
         message = document.querySelector('.result-message');
         message.textContent = `${currentPlayer.name} wins the game`;
+        currentPlayer.score += 1;
 
         newButton = document.querySelector('.new-game');
         newButton.textContent = 'New Game';
 
         document.getElementById('new-game').addEventListener('click', () => {
           const cell = gameBoard.getCells();
-          for (let i = 0; i < 9 ; i++){
-            console.log('yay')
-            cell[i].innerHTML = '';
+          for (let i = 0; i < 9; i += 1) {
+            cell[i].textContent = '';
             cell[i].classList.remove('win');
           }
           document.querySelector('.message').style.display = 'none';
@@ -118,16 +129,28 @@ const displayController = (() => {
 
   const checkTie = (countMarks) => {
     if (countMarks === 9) {
-      message = document.getElementById('result-message');
-      message.innerHTML = 'It\'s a Tie';
+      // messageContainer = document.querySelector('.message');
+      // messageContainer.style.display = 'flex';
+
+      message = document.getElementById('.result-message');
+      message.textContent = 'It\'s a Tie';
+
+      // newButton = document.querySelector('.new-game');
+      // newButton.textContent = 'New Game';
+
+      // document.getElementById('new-game').addEventListener('click', () => {
+      //   const cell = gameBoard.getCells();
+      //   for (let i = 0; i < 9; i += 1) {
+      //     cell[i].textContent = '';
+      //     cell[i].classList.remove('win');
+      //   }
+      //   document.querySelector('.message').style.display = 'none';
+      // });
     }
   };
 
-
-
   const newGame = () => {
-
-  }
+  };
 
   const getPlayersData = () => {
     const pname1 = document.getElementById('player1').value;
@@ -148,18 +171,19 @@ const displayController = (() => {
       // eslint-disable-next-line no-loop-func
       cell[i].addEventListener('click', () => {
         if (!check) {
-          if (cell[i].innerHTML === '') {
+          if (cell[i].textContent === '') {
             if (countMarks % 2 === 0) {
-              cell[i].innerHTML = player1.symbol;
+              cell[i].textContent = player1.symbol;
               currentPlayer = player1;
             } else {
-              cell[i].innerHTML = player2.symbol;
+              cell[i].textContent = player2.symbol;
               currentPlayer = player2;
             }
             countMarks += 1;
           }
         }
         displayController.checkWins(cell);
+        gameBoard.updateScore(currentPlayer, player1);
         displayController.checkTie(countMarks);
       });
     }
@@ -182,8 +206,6 @@ const gameFlow = (() => {
     displayController.submitBtn();
     return false;
   };
-
-
 
   // displayController.playerMove(player1, player2);
   // displayController.renderCell();
