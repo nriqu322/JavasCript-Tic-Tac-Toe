@@ -70,6 +70,8 @@ const gameBoard = (() => {
 
 const displayController = (() => {
   let message;
+  let check = false;
+  let countMarks = 0;
 
   const checkWins = (cell) => {
     gameBoard.winCombos.forEach((combo) => {
@@ -98,35 +100,19 @@ const displayController = (() => {
 
   const board = document.getElementById('board');
 
-  const submitBtn = () => {
-        const pname1 = document.getElementById('player1');
-        const pname2 = document.getElementById('player2');
-        const player1 = Player(pname1, 'X');
-        const player2 = Player(pname2, 'O');
-        gameBoard.displayPlayers(player1, player2);
-        gameBoard.renderCell();
+  const getPlayersData = () => {
+    const pname1 = document.getElementById('player1');
+    const pname2 = document.getElementById('player2');
+    const player1 = Player(pname1, 'X');
+    const player2 = Player(pname2, 'O');
 
-        // playerMove(player1, player2);
-        document.getElementById('players-form').remove();
-        // document.getElementById
-        return { pname1, pname2 } ;
-      };
+    return [player1, player2];
+  }
 
-    document.getElementById('players-form').onsubmit = () => {
-      submitBtn();
-      return false;
-    }
-  return {
-    checkWins, checkTie
-  };
-})();
-
-const gameFlow = (() => {
-
-  let countMarks = 0;
-  let check = false;
-
-  const playerMove = (player1, player2) => {
+  const playerMove = () => {
+    players = getPlayersData();
+    player1 = players[0];
+    player2 = players[1];
     const cell = gameBoard.getCells();
 
     for (let i = 0; i < 9; i += 1) {
@@ -147,6 +133,25 @@ const gameFlow = (() => {
       });
     }
   };
+
+  const submitBtn = () => {
+        gameBoard.displayPlayers(player1, player2);
+        gameBoard.renderCell();
+        document.getElementById('players-form').remove();
+      };
+
+  return {
+    checkWins, checkTie, getPlayersData, submitBtn, playerMove
+  };
+})();
+
+const gameFlow = (() => {
+
+  document.getElementById('players-form').onsubmit = () => {
+    displayController.submitBtn();
+    displayController.playerMove();
+    return false;
+  }
   // displayController.playerMove(player1, player2);
   // displayController.renderCell();
 })();
