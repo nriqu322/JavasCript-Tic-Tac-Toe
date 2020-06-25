@@ -1,6 +1,7 @@
 const Player = (name, symbol, score = 0) => ({ name, symbol, score });
 
 const gameBoard = (() => {
+  const board = document.getElementById('board');
   const winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -65,13 +66,18 @@ const gameBoard = (() => {
     p2.style.display = 'block';
   };
 
-  return { winCombos, renderCell, getCells, displayPlayers };
+  return {
+    winCombos, renderCell, getCells, displayPlayers,
+  };
 })();
 
 const displayController = (() => {
   let message;
   let check = false;
   let countMarks = 0;
+  // let player1;
+  // let player2;
+  // let players;
 
   const checkWins = (cell) => {
     gameBoard.winCombos.forEach((combo) => {
@@ -98,21 +104,19 @@ const displayController = (() => {
     }
   };
 
-  const board = document.getElementById('board');
-
   const getPlayersData = () => {
-    const pname1 = document.getElementById('player1');
-    const pname2 = document.getElementById('player2');
+    const pname1 = document.getElementById('player1').value;
+    const pname2 = document.getElementById('player2').value;
     const player1 = Player(pname1, 'X');
     const player2 = Player(pname2, 'O');
-
     return [player1, player2];
-  }
+  };
 
   const playerMove = () => {
-    players = getPlayersData();
-    player1 = players[0];
-    player2 = players[1];
+    const players = getPlayersData();
+    const player1 = players[0];
+    const player2 = players[1];
+    gameBoard.displayPlayers(player1, player2);
     const cell = gameBoard.getCells();
 
     for (let i = 0; i < 9; i += 1) {
@@ -135,23 +139,22 @@ const displayController = (() => {
   };
 
   const submitBtn = () => {
-        gameBoard.displayPlayers(player1, player2);
-        gameBoard.renderCell();
-        document.getElementById('players-form').remove();
-      };
+    gameBoard.renderCell();
+    playerMove();
+    const form = document.getElementById('players-form');
+    form.style.display = 'none';
+  };
 
   return {
-    checkWins, checkTie, getPlayersData, submitBtn, playerMove
+    checkWins, checkTie, getPlayersData, submitBtn, playerMove,
   };
 })();
 
 const gameFlow = (() => {
-
   document.getElementById('players-form').onsubmit = () => {
     displayController.submitBtn();
-    displayController.playerMove();
     return false;
-  }
+  };
   // displayController.playerMove(player1, player2);
   // displayController.renderCell();
 })();
