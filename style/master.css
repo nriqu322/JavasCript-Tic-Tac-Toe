@@ -13,7 +13,27 @@ body {
 .display-players {
   max-width: 500px;
 }
+
 .dis-player1,
 .dis-player2 {
   display: none;
+}
+
+.win {
+  background-color: rgb(15, 197, 15);
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
 }

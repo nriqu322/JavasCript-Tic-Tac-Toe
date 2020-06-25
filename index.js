@@ -75,9 +75,9 @@ const displayController = (() => {
   let message;
   let check = false;
   let countMarks = 0;
-  // let player1;
-  // let player2;
-  // let players;
+  let currentPlayer;
+  let messageContainer;
+  let newButton;
 
   const checkWins = (cell) => {
     gameBoard.winCombos.forEach((combo) => {
@@ -90,8 +90,19 @@ const displayController = (() => {
         && cell[elem1].innerHTML === cell[elem2].innerHTML
         && cell[elem1].innerHTML === cell[elem3].innerHTML
       ) {
-        message = document.getElementById('result-message');
-        message.innerHTML = 'Winner';
+        cell[elem1].classList.add('win');
+        cell[elem2].classList.add('win');
+        cell[elem3].classList.add('win');
+
+        messageContainer = document.querySelector('.message');
+        messageContainer.style.display = 'flex';
+
+        message = document.querySelector('.result-message');
+        message.textContent = `${currentPlayer.name} wins the game`;
+
+        newButton = document.querySelector('.new-game');
+        newButton.textContent = 'New Game';
+
         check = true;
       }
     });
@@ -126,8 +137,10 @@ const displayController = (() => {
           if (cell[i].innerHTML === '') {
             if (countMarks % 2 === 0) {
               cell[i].innerHTML = player1.symbol;
+              currentPlayer = player1;
             } else {
               cell[i].innerHTML = player2.symbol;
+              currentPlayer = player2;
             }
             countMarks += 1;
           }
