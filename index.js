@@ -197,7 +197,7 @@ const displayController = (() => {
   };
 
   return {
-    checkWins, checkTie, getPlayersData, submitBtn, playerMove
+    checkWins, checkTie, getPlayersData, submitBtn, playerMove,
   };
 })();
 
