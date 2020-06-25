@@ -106,70 +106,56 @@ const displayController = (() => {
         cell[elem2].classList.add('win');
         cell[elem3].classList.add('win');
 
-        countMarks = 0;
-
-        messageContainer = document.querySelector('.message');
-        messageContainer.style.display = 'flex';
-
-        message = document.querySelector('.result-message');
-        message.textContent = `${currentPlayer.name} wins the game`;
+        gameOverMessage(`${currentPlayer.name} wins`)
+        resetGame();
+        resetBoard();
         currentPlayer.score += 1;
-
-        newButton = document.querySelector('.new-game');
-        newButton.textContent = 'New Game';
-
-        resetButton = document.querySelector('.reset-game');
-        resetButton.textContent = 'Reset Game';
-
-        document.getElementById('new-game').addEventListener('click', () => {
-          const cell = gameBoard.getCells();
-          for (let i = 0; i < 9; i += 1) {
-            cell[i].textContent = '';
-            cell[i].classList.remove('win');
-          }
-          document.querySelector('.message').style.display = 'none';
-        });
-
-        document.getElementById('reset-game').addEventListener('click', () => {
-          window.location.reload();
-        });
+        countMarks = 0;
       }
     });
   };
 
+  const gameOverMessage = (string) => {
+    messageContainer = document.querySelector('.message');
+    messageContainer.style.display = 'flex';
+
+    message = document.querySelector('.result-message');
+    message.textContent = `${string}`;
+
+    newButton = document.querySelector('.new-game');
+    newButton.textContent = 'New Game';
+
+    resetButton = document.querySelector('.reset-game');
+    resetButton.textContent = 'Reset Game';
+  }
+
   const checkTie = (countMarks) => {
     if (countMarks === 9) {
-      messageContainer = document.querySelector('.message');
-      messageContainer.style.display = 'flex';
-
-      message = document.querySelector('.result-message');
-      message.textContent = 'It\'s a Tie';
-
-      newButton = document.querySelector('.new-game');
-      newButton.textContent = 'New Game';
-
-      resetButton = document.querySelector('.reset-game');
-      resetButton.textContent = 'Reset Game';
-
+      gameOverMessage('It\'s a tie');
+      resetGame();
+      resetBoard();
       countMarks = 0;
-
-      document.getElementById('new-game').addEventListener('click', () => {
-        const cell = gameBoard.getCells();
-        for (let i = 0; i < 9; i += 1) {
-          cell[i].textContent = '';
-          cell[i].classList.remove('win');
-        }
-        document.querySelector('.message').style.display = 'none';
-      });
-
-      document.getElementById('reset-game').addEventListener('click', () => {
-        window.location.reload();
-      });
     }
   };
 
   const resetGame = () => {
+    document.getElementById('reset-game').addEventListener('click', () => {
+      window.location.reload();
+    });
   };
+
+  const resetBoard = () => {
+    document.getElementById('new-game').addEventListener('click', () => {
+      const cell = gameBoard.getCells();
+      for (let i = 0; i < 9; i += 1) {
+        cell[i].textContent = '';
+        cell[i].classList.remove('win');
+      }
+      document.querySelector('.message').style.display = 'none';
+    });
+  }
+
+
 
   const getPlayersData = () => {
     const pname1 = document.getElementById('player1').value;
@@ -220,12 +206,9 @@ const displayController = (() => {
   };
 })();
 
-const gameFlow = (() => {
+const gameStart = (() => {
   document.getElementById('players-form').onsubmit = () => {
     displayController.submitBtn();
     return false;
   };
-
-  // displayController.playerMove(player1, player2);
-  // displayController.renderCell();
 })();
