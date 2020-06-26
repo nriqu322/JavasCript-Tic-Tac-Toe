@@ -10,32 +10,34 @@
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
-  <header class='m-5'>
-    <h1 class="text-center"><span class="yellow">Super</span><br>Tic-Tac-Toe</h1>
-  </header>
-  <main class='container'>
-    <section id='form-container m-4'>
-      <form class="form text-center" id='players-form'>
-        <input type="text" class="py-1" id="player1" name="player1" required placeholder="Player 1 (X)" value="">
-        <input type="text" class="py-1" id="player2" name="player2" required placeholder="Player 2 (0)" value=""><br>
-        <input type="submit" class='button m-5' value='Press to Start' id='input-submit' name="input-submit">
-      </form>
-      <div class="display-players mx-auto d-flex flex-row justify-content-between">
-        <div class='dis-player1 player-turn'>
-          <div class='name1-container text-uppercase'></div>
+  <main class='container m-5'>  
+    <header class='m-5'>
+      <h1 class="text-center"><span class="yellow">Super</span><br>Tic-Tac-Toe</h1>
+    </header>
+    <section class='container'>
+      <section id='form-container m-4'>
+        <form class="form text-center" id='players-form'>
+          <input type="text" class="py-1" id="player1" name="player1" required placeholder="Player 1 (X)" value="">
+          <input type="text" class="py-1" id="player2" name="player2" required placeholder="Player 2 (0)" value=""><br>
+          <input type="submit" class='button m-5' value='Press to Start' id='input-submit' name="input-submit">
+        </form>
+        <div class="display-players mx-auto d-flex flex-row justify-content-between">
+          <div class='dis-player1 player-turn'>
+            <div class='name1-container text-uppercase'></div>
+          </div>
+          <div class='dis-player2'>
+            <div class='name2-container text-uppercase'></div>
+          </div>
         </div>
-        <div class='dis-player2'>
-          <div class='name2-container text-uppercase'></div>
+      </section>
+      <section class="board-container mx-auto">
+        <div class="board row" id="board"></div>
+        <div class="message">
+          <div class="result-message text-uppercase text-white"></div><br>
+          <div type="button" id="new-game" class="new-game btn btn-secondary"></div><br>
+          <div type="button" id="reset-game" class="reset-game btn btn-warning"></div>
         </div>
-      </div>
-    </section>
-    <section class="board-container mx-auto">
-      <div class="board row" id="board"></div>
-      <div class="message">
-        <div class="result-message text-uppercase text-white"></div><br>
-        <div type="button" id="new-game" class="new-game btn btn-secondary"></div><br>
-        <div type="button" id="reset-game" class="reset-game btn btn-warning"></div>
-      </div>
+      </section>
     </section>
   </main>
   <script type="text/javascript" src='index.js'></script>
