@@ -35,6 +35,10 @@ body {
   background-color: $color-background;
 }
 
+h1 {
+  text-shadow: 4px 4px 2px $yellow;
+}
+
 form {
   input {
     background-color: rgb(200, 180, 230);
