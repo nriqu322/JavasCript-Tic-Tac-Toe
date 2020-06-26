@@ -103,7 +103,7 @@ const gameBoard = (() => {
   };
 
   return {
-    winCombos, renderCell, getCells, displayPlayers, updateScore, updateStyle
+    winCombos, renderCell, getCells, displayPlayers, updateScore, updateStyle,
   };
 })();
 
@@ -230,6 +230,7 @@ const displayController = (() => {
   };
 })();
 
+// eslint-disable-next-line no-unused-vars
 const gameStart = (() => {
   document.getElementById('players-form').onsubmit = () => {
     displayController.submitBtn();

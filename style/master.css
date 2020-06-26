@@ -11,7 +11,7 @@ main {
 }
 
 h1 {
-  text-shadow: 4px 4px 0px #f2c029;
+  text-shadow: 4px 4px 0 #f2c029;
 }
 
 form input {
@@ -27,11 +27,13 @@ form input {
 
 .button {
   background-color: #05f2db;
-  height: 40px; }
-  .button:hover {
-    background-color: #05c7f2;
-    transform: scale(1.1);
-  }
+  height: 40px;
+}
+
+.button:hover {
+  background-color: #05c7f2;
+  transform: scale(1.1);
+}
 
 .board-container {
   margin-bottom: 100px !important;
@@ -112,28 +114,32 @@ form input {
   transition: 0.2s;
 }
 
-  .cell:hover {
-    background-color: #f23005;
-    transition: 0.2s;
-    cursor: pointer;
-  }
+.cell:hover {
+  background-color: #f23005;
+  transition: 0.2s;
+  cursor: pointer;
+}
 
-  .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
-    border-top: none;
-    margin-top: 25px;
-  }
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+  margin-top: 25px;
+}
 
-  .cell:nth-child(3n + 1) {
-    border-left: none;
-  }
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
 
-  .cell:nth-child(3n + 3) {
-    border-right: none;
-  }
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
 
-  .cell:last-child, .cell:nth-child(7), .cell:nth-child(8) {
-    border-bottom: none;
-  }
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+  border-bottom: none;
+}
 
 .display-players {
   max-width: 500px;
