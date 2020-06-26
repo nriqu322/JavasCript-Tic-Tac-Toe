@@ -31,48 +31,64 @@ const gameBoard = (() => {
     const p1 = document.querySelector('.dis-player1');
     const p2 = document.querySelector('.dis-player2');
 
+    const nameCont1 = document.querySelector('.name1-container');
     const pName1 = document.createElement('div');
-    pName1.classList.add('p1name');
-    pName1.innerHTML = player1.name;
+    pName1.classList.add('p1name', 'absolute');
+    pName1.textContent = player1.name;
 
     const pSymbol1 = document.createElement('div');
     pSymbol1.classList.add('p1symbol');
     pSymbol1.textContent = player1.symbol;
 
     const pScore1 = document.createElement('div');
+    const scoreTitle1 = document.createElement('span');
+    const score1 = document.createElement('div');
     pScore1.classList.add('p1score');
-    pScore1.textContent = player1.score;
+    scoreTitle1.classList.add('absolute');
+    scoreTitle1.textContent = 'SCORE';
+    score1.classList.add('score1');
+    score1.textContent = player1.score;
 
-    p1.appendChild(pName1);
+    nameCont1.appendChild(pName1);
     p1.append(pSymbol1);
     p1.appendChild(pScore1);
-    p1.style.display = 'block';
+    pScore1.appendChild(scoreTitle1);
+    pScore1.appendChild(score1);
+    p1.classList.add('d-flex', 'flex-column');
 
+    const nameCont2 = document.querySelector('.name2-container');
     const pName2 = document.createElement('div');
-    pName2.classList.add('p1name');
-    pName2.innerHTML = player2.name;
+    pName2.classList.add('p2name', 'absolute');
+    pName2.textContent = player2.name;
 
     const pSymbol2 = document.createElement('div');
     pSymbol2.classList.add('p2symbol');
     pSymbol2.textContent = player2.symbol;
 
     const pScore2 = document.createElement('div');
+    const scoreTitle2 = document.createElement('span');
+    const score2 = document.createElement('div');
     pScore2.classList.add('p2score');
-    pScore2.textContent = player2.score;
+    scoreTitle2.classList.add('absolute');
+    scoreTitle2.textContent = 'SCORE';
+    score2.classList.add('score2');
+    score2.textContent = player2.score;
 
-    p2.appendChild(pName2);
+    nameCont2.appendChild(pName2);
     p2.append(pSymbol2);
     p2.appendChild(pScore2);
-    p2.style.display = 'block';
+    pScore2.appendChild(scoreTitle2);
+    pScore2.appendChild(score2);
+    p2.classList.add('d-flex', 'flex-column');
   };
 
 
   const updateScore = (currentPlayer, player1) => {
     if (currentPlayer === player1) {
-      const pScore1 = document.querySelector('.p1score');
+      const pScore1 = document.querySelector('.score1');
       pScore1.textContent = currentPlayer.score;
     } else {
-      const pScore2 = document.querySelector('.p2score');
+      const pScore2 = document.querySelector('.score2');
       pScore2.textContent = currentPlayer.score;
     }
   };
@@ -84,36 +100,11 @@ const gameBoard = (() => {
 
 const displayController = (() => {
   let message;
-  let check = false;
   let countMarks = 0;
   let currentPlayer;
   let messageContainer;
   let newButton;
   let resetButton;
-
-  const checkWins = (cell) => {
-    gameBoard.winCombos.forEach((combo) => {
-      const elem1 = combo[0];
-      const elem2 = combo[1];
-      const elem3 = combo[2];
-
-      if (
-        cell[elem1].innerHTML
-        && cell[elem1].innerHTML === cell[elem2].innerHTML
-        && cell[elem1].innerHTML === cell[elem3].innerHTML
-      ) {
-        cell[elem1].classList.add('win');
-        cell[elem2].classList.add('win');
-        cell[elem3].classList.add('win');
-
-        gameOverMessage(`${currentPlayer.name} wins`)
-        resetGame();
-        resetBoard();
-        currentPlayer.score += 1;
-        countMarks = 0;
-      }
-    });
-  };
 
   const gameOverMessage = (string) => {
     messageContainer = document.querySelector('.message');
@@ -127,15 +118,6 @@ const displayController = (() => {
 
     resetButton = document.querySelector('.reset-game');
     resetButton.textContent = 'Reset Game';
-  }
-
-  const checkTie = (countMarks) => {
-    if (countMarks === 9) {
-      gameOverMessage('It\'s a tie');
-      resetGame();
-      resetBoard();
-      countMarks = 0;
-    }
   };
 
   const resetGame = () => {
@@ -153,7 +135,42 @@ const displayController = (() => {
       }
       document.querySelector('.message').style.display = 'none';
     });
-  }
+  };
+
+  const checkWins = (cell) => {
+    gameBoard.winCombos.forEach((combo) => {
+      const elem1 = combo[0];
+      const elem2 = combo[1];
+      const elem3 = combo[2];
+
+      if (
+        cell[elem1].innerHTML
+        && cell[elem1].innerHTML === cell[elem2].innerHTML
+        && cell[elem1].innerHTML === cell[elem3].innerHTML
+      ) {
+        cell[elem1].classList.add('win');
+        cell[elem2].classList.add('win');
+        cell[elem3].classList.add('win');
+
+        gameOverMessage(`${currentPlayer.name} wins`);
+        resetGame();
+        resetBoard();
+        currentPlayer.score += 1;
+        countMarks = 0;
+      }
+    });
+  };
+
+
+  const checkTie = (countMarks) => {
+    if (countMarks === 9) {
+      gameOverMessage('It\'s a tie');
+      resetGame();
+      resetBoard();
+      countMarks = 0;
+    }
+  };
+
 
   const getPlayersData = () => {
     const pname1 = document.getElementById('player1').value;
@@ -173,17 +190,15 @@ const displayController = (() => {
     for (let i = 0; i < 9; i += 1) {
       // eslint-disable-next-line no-loop-func
       cell[i].addEventListener('click', () => {
-        if (!check) {
-          if (cell[i].textContent === '') {
-            if (countMarks % 2 === 0) {
-              cell[i].textContent = player1.symbol;
-              currentPlayer = player1;
-            } else {
-              cell[i].textContent = player2.symbol;
-              currentPlayer = player2;
-            }
-            countMarks += 1;
+        if (cell[i].textContent === '') {
+          if (countMarks % 2 === 0) {
+            cell[i].textContent = player1.symbol;
+            currentPlayer = player1;
+          } else {
+            cell[i].textContent = player2.symbol;
+            currentPlayer = player2;
           }
+          countMarks += 1;
         }
         displayController.checkWins(cell);
         gameBoard.updateScore(currentPlayer, player1);

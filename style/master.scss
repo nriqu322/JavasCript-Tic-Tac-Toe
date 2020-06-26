@@ -16,7 +16,7 @@ $StarTropics-4-hex: #158C03;
 $StarTropics-5-hex: #0D0D0D;
 
 /* Color Theme Swatches in Hex */
-$Arcade-High-New-Impressions-1-hex: #BF268A;
+$info-border: #bf268a;
 $Arcade-High-New-Impressions-2-hex: #D93BBE;
 $yellow: #F2C029;
 $Arcade-High-New-Impressions-4-hex: #F2913D;
@@ -29,7 +29,6 @@ $color-accent: #05F2DB;
 $color-complementary: #F23005;
 $Creative-analogous: #730202;
 
-
 body {
   font-size: 12px;
   color: $color-accent;
@@ -39,20 +38,21 @@ body {
 
 form {
   input {
-    background-color: rgb(200,180,230);
+    background-color: rgb(200, 180, 230);
     color: $color-secondary;
     border: solid $color-accent 2px;
   }
 }
 
-span {
+.yellow {
   color: $yellow;
 }
 
 .button {
-  background-color: $color-accent ;
+  background-color: $color-accent;
   height: 40px;
-  &:hover{
+
+  &:hover {
     background-color: $color-accent-hover;
     transform: scale(1.1);
   }
@@ -62,21 +62,101 @@ span {
   max-width: 300px;
 }
 
+.dis-player1,
+.dis-player2 {
+  display: none;
+  border: solid 2px $color-accent;
+  padding: 10px;
+}
+
+.name1-container,
+.name2-container {
+  position: relative;
+  top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-background;
+}
+
+.p1name,
+.p2name {
+  background-color: $color-background;
+  font-size: 14px;
+}
+
+.p1symbol,
+.p2symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px $info-border;
+  height: 50px;
+  width: 100px;
+  font-size: 22px;
+  margin-top: 12px;
+}
+
+.p1score,
+.p2score {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px $info-border;
+  height: 60px;
+  width: 100px;
+  margin-top: 12px;
+}
+
+.score1,
+.score2 {
+  font-size: 20px;
+}
+
+.absolute {
+  position: absolute;
+  top: -10px;
+  background-color: $color-background;
+}
+
 .cell {
   height: 100px;
-  &:hover{
-    background-color: $color-complementary ;
+  border: solid 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+
+  &:hover {
+    background-color: $color-complementary;
     cursor: pointer;
+  }
+
+  &:first-child,
+  &:nth-child(2),
+  &:nth-child(3) {
+    border-top: none;
+    margin-top: 25px;
+  }
+
+  &:nth-child(3n + 1) {
+    border-left: none;
+  }
+
+  &:nth-child(3n + 3) {
+    border-right: none;
+  }
+
+  &:last-child,
+  &:nth-child(7),
+  &:nth-child(8) {
+    border-bottom: none;
   }
 }
 
 .display-players {
   max-width: 500px;
-}
-
-.dis-player1,
-.dis-player2 {
-  display: none;
 }
 
 .win {
