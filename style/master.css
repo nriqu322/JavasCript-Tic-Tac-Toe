@@ -98,7 +98,6 @@ form input {
   transition: 0.2s; }
   .cell:hover {
     background-color: #f23005;
-    transform: scale(0.8);
     transition: 0.2s;
     cursor: pointer; }
   .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
