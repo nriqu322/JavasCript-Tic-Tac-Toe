@@ -36,7 +36,7 @@ body {
 }
 
 h1 {
-  text-shadow: 4px 4px 2px $yellow;
+  text-shadow: 4px 4px 0px $yellow;
 }
 
 form {
@@ -49,6 +49,7 @@ form {
 
 .yellow {
   color: $yellow;
+  text-shadow: 4px 4px 0 $color-complementary;/**/
 }
 
 .button {
@@ -70,6 +71,11 @@ form {
   display: none;
   border: solid 2px $color-accent;
   padding: 10px;
+}
+
+.player-turn {
+  box-shadow: 5px 10px $color-accent;
+  transition: 0.2s;
 }
 
 .name1-container,
@@ -160,6 +166,7 @@ form {
 
 .display-players {
   max-width: 500px;
+  transition: 0.2s;
 }
 
 .win {

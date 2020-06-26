@@ -7,158 +7,112 @@ body {
   font-size: 12px;
   color: #05f2db;
   font-family: 'Press Start 2P', cursive;
-  background-color: #011126;
-}
+  background-color: #011126; }
 
 h1 {
-  text-shadow: 4px 4px 2px #f2c029;
-}
+  text-shadow: 4px 4px 0px #f2c029; }
 
 form input {
   background-color: #c8b4e6;
   color: #011640;
-  border: solid #05f2db 2px;
-}
+  border: solid #05f2db 2px; }
 
 .yellow {
   color: #f2c029;
-}
+  text-shadow: 4px 4px 0 #f23005;
+  /**/ }
 
 .button {
   background-color: #05f2db;
-  height: 40px;
-}
-
-.button:hover {
-  background-color: #05c7f2;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
+  height: 40px; }
+  .button:hover {
+    background-color: #05c7f2;
+    transform: scale(1.1); }
 
 .board-container {
-  max-width: 300px;
-}
+  max-width: 300px; }
 
 .dis-player1,
 .dis-player2 {
   display: none;
   border: solid 2px #05f2db;
-  padding: 10px;
-}
+  padding: 10px; }
+
+.player-turn {
+  box-shadow: 5px 10px #05f2db;
+  transition: 0.2s; }
 
 .name1-container,
 .name2-container {
   position: relative;
   top: -10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #011126;
-}
+  justify-content: center;
+  align-items: center;
+  background-color: #011126; }
 
 .p1name,
 .p2name {
   background-color: #011126;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .p1symbol,
 .p2symbol {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   border: solid 2px #bf268a;
   height: 50px;
   width: 100px;
   font-size: 22px;
-  margin-top: 12px;
-}
+  margin-top: 12px; }
 
 .p1score,
 .p2score {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   border: solid 2px #bf268a;
   height: 60px;
   width: 100px;
-  margin-top: 12px;
-}
+  margin-top: 12px; }
 
 .score1,
 .score2 {
-  font-size: 20px;
-}
+  font-size: 20px; }
 
 .absolute {
   position: absolute;
   top: -10px;
-  background-color: #011126;
-}
+  background-color: #011126; }
 
 .cell {
   height: 100px;
   border: solid 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 40px;
-}
-
-.cell:hover {
-  background-color: #f23005;
-  cursor: pointer;
-}
-
-.cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
-  border-top: none;
-  margin-top: 25px;
-}
-
-.cell:nth-child(3n + 1) {
-  border-left: none;
-}
-
-.cell:nth-child(3n + 3) {
-  border-right: none;
-}
-
-.cell:last-child, .cell:nth-child(7), .cell:nth-child(8) {
-  border-bottom: none;
-}
+  justify-content: center;
+  align-items: center;
+  font-size: 40px; }
+  .cell:hover {
+    background-color: #f23005;
+    cursor: pointer; }
+  .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
+    border-top: none;
+    margin-top: 25px; }
+  .cell:nth-child(3n + 1) {
+    border-left: none; }
+  .cell:nth-child(3n + 3) {
+    border-right: none; }
+  .cell:last-child, .cell:nth-child(7), .cell:nth-child(8) {
+    border-bottom: none; }
 
 .display-players {
   max-width: 500px;
-}
+  transition: 0.2s; }
 
 .win {
-  background-color: #0fc50f;
-}
+  background-color: #0fc50f; }
 
 .message {
   position: absolute;
@@ -168,17 +122,10 @@ form input {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   display: none;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 20px;
-  font-weight: bold;
-}
+  font-weight: bold; }
+
 /*# sourceMappingURL=master.css.map */

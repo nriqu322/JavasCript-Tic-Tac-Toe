@@ -82,6 +82,15 @@ const gameBoard = (() => {
     p2.classList.add('d-flex', 'flex-column');
   };
 
+  const updateStyle = (currentPlayer, player) => {
+    if (currentPlayer === player) {
+      document.querySelector('.dis-player1').classList.remove('player-turn');
+      document.querySelector('.dis-player2').classList.add('player-turn');
+    } else {
+      document.querySelector('.dis-player2').classList.remove('player-turn');
+      document.querySelector('.dis-player1').classList.add('player-turn');
+    }
+  };
 
   const updateScore = (currentPlayer, player1) => {
     if (currentPlayer === player1) {
@@ -94,7 +103,7 @@ const gameBoard = (() => {
   };
 
   return {
-    winCombos, renderCell, getCells, displayPlayers, updateScore,
+    winCombos, renderCell, getCells, displayPlayers, updateScore, updateStyle
   };
 })();
 
@@ -187,6 +196,7 @@ const displayController = (() => {
     gameBoard.displayPlayers(player1, player2);
     const cell = gameBoard.getCells();
 
+
     for (let i = 0; i < 9; i += 1) {
       // eslint-disable-next-line no-loop-func
       cell[i].addEventListener('click', () => {
@@ -200,6 +210,7 @@ const displayController = (() => {
           }
           countMarks += 1;
         }
+        gameBoard.updateStyle(currentPlayer, player1);
         displayController.checkWins(cell);
         gameBoard.updateScore(currentPlayer, player1);
         displayController.checkTie(countMarks);
