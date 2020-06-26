@@ -1,32 +1,12 @@
-/* font-family: 'Press Start 2P', cursive; */
 
-/* Color Theme Swatches in Hex */
-$LEE-《DMT》Music-Video-1-hex: #3f3ca6;
-$LEE-《DMT》Music-Video-2-hex: #2c2973;
 $color-light: #716df2;
 $color-accent-hover: #05c7f2;
-$LEE-《DMT》Music-Video-5-hex: #05f2f2;
-
-/* Color Theme Swatches in Hex */
-$StarTropics-1-hex: #414af2;
-$StarTropics-2-hex: #484fd9;
-$StarTropics-3-hex: #8d92f2;
-$StarTropics-4-hex: #158c03;
-$StarTropics-5-hex: #0d0d0d;
-
-/* Color Theme Swatches in Hex */
 $info-border: #bf268a;
-$Arcade-High-New-Impressions-2-hex: #d93bbe;
 $yellow: #f2c029;
-$Arcade-High-New-Impressions-4-hex: #f2913d;
-$Arcade-High-New-Impressions-5-hex: #f26e50;
-
-/* Color Theme Swatches in Hex */
 $color-secondary: #011640;
 $color-background: #011126;
 $color-accent: #05f2db;
 $color-complementary: #f23005;
-$Creative-analogous: #730202;
 
 body {
   font-size: 12px;
@@ -143,9 +123,11 @@ form {
   justify-content: center;
   align-items: center;
   font-size: 40px;
-
+  transition: 0.2s;
   &:hover {
     background-color: $color-complementary;
+    transform: scale(0.8);
+    transition: 0.2s;
     cursor: pointer;
   }
 
