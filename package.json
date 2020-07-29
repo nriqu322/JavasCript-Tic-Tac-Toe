@@ -1,10 +1,12 @@
 {
   "name": "javascript-tic-tac-toe",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is part of the Microverse Curriculum projects. It is a Javascript application to practice factory functions and modules.  This is a tic-tac-toe game for two players with retro style.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -17,11 +19,22 @@
   },
   "homepage": "https://github.com/HeflerDev/JavasCript-Tic-Tac-Toe#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "css-loader": "^4.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.0.0",
+    "jest": "^26.1.0",
+    "style-loader": "^1.2.1",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-scss": "^3.17.2"
-  }
+    "stylelint-scss": "^3.17.2",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {}
 }

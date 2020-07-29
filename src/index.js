@@ -1,3 +1,5 @@
+import './master.css';
+
 const Player = (name, symbol, score = 0) => ({ name, symbol, score });
 
 const gameBoard = (() => {
