@@ -1,9 +1,10 @@
 import './master.css';
-import displayController from './displayController';
+// import displayController from './displayController';
+import gameBoard from './gameBoard';
 
 const gameStart = () => {
   document.getElementById('players-form').onsubmit = () => {
-    displayController.submitBtn();
+    gameBoard.submitBtn();
     return false;
   };
 };
