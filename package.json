@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nriqu322/JavasCript-Tic-Tac-Toe.git"
+    "url": "git+https://github.com/HeflerDev/JavasCript-Tic-Tac-Toe.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nriqu322/JavasCript-Tic-Tac-Toe/issues"
+    "url": "https://github.com/HeflerDev/JavasCript-Tic-Tac-Toe/issues"
   },
-  "homepage": "https://github.com/nriqu322/JavasCript-Tic-Tac-Toe#readme",
+  "homepage": "https://github.com/HeflerDev/JavasCript-Tic-Tac-Toe#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.10.4",
     "css-loader": "^4.1.0",
