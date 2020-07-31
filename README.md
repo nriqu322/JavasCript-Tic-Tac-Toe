@@ -27,13 +27,7 @@ Check the live version [here](https://rawcdn.githack.com/HeflerDev/JavasCript-Ti
 ## Future Features
 * Play against the computer.
 
-## Authors
-
-👤 **Henrique Hefler**
-
-- Github: [@HeflerDev](https://github.com/HeflerDev)
-- Twitter: [@HeflerDev](https://twitter.com/HeflerDev )
-- Linkedin: [Henrique Hefler](https://www.linkedin.com/in/heflerdev/)
+## Author
 
 👤 **Luis Saavedra**
 - Github: [@nriqu322](https://github.com/nriqu322)

@@ -3,6 +3,22 @@ const displayController = (() => {
   let messageContainer;
   let newButton;
   let resetButton;
+  const DomBoard = document.getElementById('board');
+
+  const renderCell = (board) => {
+    for (let i = 0; i < board.length; i += 1) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell', 'col-4');
+      cell.id = `cell-${i}`;
+      cell.value = board[i];
+      DomBoard.appendChild(cell);
+    }
+  };
+
+  const getCells = () => {
+    const cell = document.querySelectorAll('.cell');
+    return cell;
+  };
 
   const gameOverMessage = (string) => {
     messageContainer = document.querySelector('.message');
@@ -94,7 +110,7 @@ const displayController = (() => {
   };
 
   return {
-    gameOverMessage, displayPlayers, updateScore, updateStyle,
+    gameOverMessage, displayPlayers, updateScore, updateStyle, renderCell, getCells,
   };
 })();
 
